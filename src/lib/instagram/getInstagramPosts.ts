@@ -35,13 +35,15 @@ async function getProxyPosts(): Promise<InstagramPost[]> {
     // Map proxy response to our internal type
     // Adjust mapping based on your proxy's response format
     if (Array.isArray(data)) {
-      return data.map((item: Record<string, unknown>) => ({
-        id: String(item.id || item.shortcode || ''),
-        image: String(item.image || item.thumbnail_url || item.display_url || ''),
-        caption: String(item.caption || item.text || ''),
-        url: String(item.url || item.permalink || ''),
-        timestamp: String(item.timestamp || item.taken_at || new Date().toISOString()),
-      }));
+      return data
+        .map((item: Record<string, unknown>) => ({
+          id: String(item.id || item.shortcode || ''),
+          image: String(item.image || item.thumbnail_url || item.display_url || ''),
+          caption: String(item.caption || item.text || ''),
+          url: String(item.url || item.permalink || ''),
+          timestamp: String(item.timestamp || item.taken_at || new Date().toISOString()),
+        }))
+        .filter((post) => post.id && post.image);
     }
 
     return [];

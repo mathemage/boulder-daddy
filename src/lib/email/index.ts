@@ -23,19 +23,23 @@ export async function sendContactEmail(payload: EmailPayload): Promise<{ success
   //   text: formatEmail(payload),
   // });
 
-  // Dev fallback: log to console
-  console.log('───────────────────────────────────');
-  console.log('📧 New Contact Form Submission');
-  console.log('───────────────────────────────────');
-  console.log(`Name: ${payload.name}`);
-  console.log(`Email: ${payload.email}`);
-  console.log(`Phone: ${payload.phone || 'Not provided'}`);
-  console.log(`Climbing Level: ${payload.climbingLevel}`);
-  console.log(`Goals: ${payload.goals}`);
-  console.log(`Preferred Days: ${payload.preferredDays.join(', ')}`);
-  console.log(`Message: ${payload.message}`);
-  console.log(`Would be sent to: ${env.coachEmail}`);
-  console.log('───────────────────────────────────');
+  // Dev fallback: log to console (non-sensitive summary only in production)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('───────────────────────────────────');
+    console.log('📧 New Contact Form Submission');
+    console.log('───────────────────────────────────');
+    console.log(`Name: ${payload.name}`);
+    console.log(`Email: ${payload.email}`);
+    console.log(`Phone: ${payload.phone || 'Not provided'}`);
+    console.log(`Climbing Level: ${payload.climbingLevel}`);
+    console.log(`Goals: ${payload.goals}`);
+    console.log(`Preferred Days: ${payload.preferredDays.join(', ')}`);
+    console.log(`Message: ${payload.message}`);
+    console.log(`Would be sent to: ${env.coachEmail}`);
+    console.log('───────────────────────────────────');
+  } else {
+    console.log(`New coaching inquiry from ${payload.name} — email provider not configured`);
+  }
 
   return { success: true };
 }

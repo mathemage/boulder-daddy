@@ -59,7 +59,8 @@ describe('contactSchema', () => {
   });
 
   it('allows missing phone', () => {
-    const { phone, ...dataWithoutPhone } = validData;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { phone: _phone, ...dataWithoutPhone } = validData;
     const result = contactSchema.safeParse(dataWithoutPhone);
     expect(result.success).toBe(true);
   });
