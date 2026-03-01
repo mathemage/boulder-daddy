@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
     // Honeypot check
     if (result.data.honeypot) {
-      // Silently accept to not tip off bots
+      console.debug('Honeypot triggered — likely bot submission');
       return NextResponse.json({ success: true });
     }
 
