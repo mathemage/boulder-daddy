@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ig-1",
+    "image": "https://placehold.co/600x600/334155/f8fafc?text=Bouldering+Session",
+    "caption": "Working on a tricky V6 overhang project 🧗‍♂️ The key was trusting the heel hook and committing to the dyno. #bouldering #climbing",
+    "url": "https://www.instagram.com/p/example1",
+    "timestamp": "2025-01-15T10:00:00Z"
+  },
+  {
+    "id": "ig-2",
+    "image": "https://placehold.co/600x600/1e3a5f/f8fafc?text=Outdoor+Climbing",
+    "caption": "First outdoor session of the season at the local crag. Nothing beats real rock. #outdoorbouldering",
+    "url": "https://www.instagram.com/p/example2",
+    "timestamp": "2025-01-10T14:30:00Z"
+  },
+  {
+    "id": "ig-3",
+    "image": "https://placehold.co/600x600/065f46/f8fafc?text=Coaching+Session",
+    "caption": "Coaching session with a beginner who sent their first V2 today! Progress is the best motivation. #climbingcoach",
+    "url": "https://www.instagram.com/p/example3",
+    "timestamp": "2025-01-05T09:15:00Z"
+  },
+  {
+    "id": "ig-4",
+    "image": "https://placehold.co/600x600/7c2d12/f8fafc?text=Sunset+Bouldering",
+    "caption": "Sunset sessions hit different 🌅 Working on slab technique and balance drills.",
+    "url": "https://www.instagram.com/p/example4",
+    "timestamp": "2024-12-28T16:00:00Z"
+  },
+  {
+    "id": "ig-5",
+    "image": "https://placehold.co/600x600/4c1d95/f8fafc?text=Training+Day",
+    "caption": "Hangboard day. Consistency over intensity — building finger strength one session at a time. #climbingtraining",
+    "url": "https://www.instagram.com/p/example5",
+    "timestamp": "2024-12-20T08:00:00Z"
+  },
+  {
+    "id": "ig-6",
+    "image": "https://placehold.co/600x600/164e63/f8fafc?text=Group+Session",
+    "caption": "Group coaching session — four climbers, four breakthroughs. Love seeing the progress! #boulderingcoach",
+    "url": "https://www.instagram.com/p/example6",
+    "timestamp": "2024-12-15T11:00:00Z"
+  }
+]
