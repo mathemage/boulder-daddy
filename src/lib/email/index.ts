@@ -23,7 +23,7 @@ export async function sendContactEmail(payload: EmailPayload): Promise<{ success
   //   text: formatEmail(payload),
   // });
 
-  // Dev fallback: log to console (non-sensitive summary only in production)
+  // Dev fallback: log full submission to console
   if (process.env.NODE_ENV === 'development') {
     console.log('───────────────────────────────────');
     console.log('📧 New Contact Form Submission');
@@ -37,9 +37,10 @@ export async function sendContactEmail(payload: EmailPayload): Promise<{ success
     console.log(`Message: ${payload.message}`);
     console.log(`Would be sent to: ${env.coachEmail}`);
     console.log('───────────────────────────────────');
-  } else {
-    console.log(`New coaching inquiry from ${payload.name} — email provider not configured`);
+    return { success: true };
   }
 
-  return { success: true };
+  // Production: no email provider configured — report failure so the user sees an error
+  console.error('Email provider not configured — inquiry was not delivered');
+  return { success: false };
 }

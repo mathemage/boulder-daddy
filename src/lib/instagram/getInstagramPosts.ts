@@ -60,9 +60,12 @@ async function getGraphPosts(): Promise<InstagramPost[]> {
   }
 
   try {
-    const url = `https://graph.instagram.com/${env.instagram.graphUserId}/media?fields=id,caption,media_url,permalink,timestamp&access_token=${env.instagram.graphAccessToken}`;
+    const url = `https://graph.facebook.com/v21.0/${env.instagram.graphUserId}/media?fields=id,caption,media_url,permalink,timestamp`;
 
     const res = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${env.instagram.graphAccessToken}`,
+      },
       next: { revalidate: 21600 }, // 6 hours
     });
 
