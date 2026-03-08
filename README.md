@@ -2,6 +2,18 @@
 
 Professional bouldering coaching website built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**. Features Instagram integration, a contact form with validation, SEO metadata, and a clean, responsive design.
 
+## Requirements
+
+- **Node.js 20.9.0 or newer** (Node 20 LTS recommended)
+- **pnpm 10 or newer**
+
+If you use `nvm`, the repository includes an `.nvmrc` so you can switch versions quickly:
+
+```bash
+nvm install
+nvm use
+```
+
 ## Quick Start
 
 ```bash
