@@ -127,7 +127,7 @@ Edit `src/content/instagram.json` with your posts. Each entry needs:
 
 Set `INSTAGRAM_MODE=proxy` and `INSTAGRAM_PROXY_URL` to a JSON endpoint that returns an array of Instagram posts. The service maps common field names (`id`, `shortcode`, `image`, `thumbnail_url`, `display_url`, `caption`, `text`, `url`, `permalink`, `timestamp`, `taken_at`).
 
-> **Note:** If your proxy serves images from a domain not already listed in `next.config.ts` `images.remotePatterns`, you must add it there for `next/image` optimisation to work. By default, `*.cdninstagram.com` and `*.fbcdn.net` are allowed.
+> **Note:** If your proxy serves images from a domain not already listed in `next.config.ts` `images.remotePatterns`, you must add it there for `next/image` optimization to work. By default, `*.cdninstagram.com` and `*.fbcdn.net` are allowed.
 
 ### 3. Graph API
 
