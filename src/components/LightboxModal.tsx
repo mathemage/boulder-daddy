@@ -69,9 +69,11 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
               />
             </div>
 
-            {post.caption && (
-              <div className="p-4">
+            <div className="p-4">
+              {post.caption && (
                 <p className="text-sm text-slate-700">{post.caption}</p>
+              )}
+              {post.url && (
                 <a
                   href={post.url}
                   target="_blank"
@@ -80,8 +82,8 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
                 >
                   View on Instagram →
                 </a>
-              </div>
-            )}
+              )}
+            </div>
           </motion.div>
         </motion.div>
       )}

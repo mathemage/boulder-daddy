@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     }
 
     // Send email
-    await sendContactEmail({
+    const emailResult = await sendContactEmail({
       name: result.data.name,
       email: result.data.email,
       phone: result.data.phone,
@@ -32,6 +32,13 @@ export async function POST(request: Request) {
       preferredDays: result.data.preferredDays,
       message: result.data.message,
     });
+
+    if (!emailResult.success) {
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again or email directly.' },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

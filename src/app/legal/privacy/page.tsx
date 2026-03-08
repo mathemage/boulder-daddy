@@ -15,7 +15,9 @@ export default function PrivacyPage() {
 
       <section className="px-4 py-16">
         <div className="prose mx-auto max-w-3xl text-slate-600">
-          <p className="mb-6 text-sm text-slate-500">Last updated: January 2025</p>
+          <p className="mb-6 text-sm text-slate-500">
+            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          </p>
 
           <h2 className="mb-4 text-xl font-bold text-slate-900">1. Information We Collect</h2>
           <p className="mb-6">
