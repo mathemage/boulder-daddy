@@ -71,7 +71,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       {/* Honeypot field — hidden from real users */}
-      <div className="absolute -left-[9999px]" aria-hidden="true">
+      <div className="sr-only" aria-hidden="true">
         <label htmlFor="honeypot">Do not fill this</label>
         <input id="honeypot" type="text" tabIndex={-1} autoComplete="off" {...register('honeypot')} />
       </div>

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { InstagramPost } from '@/lib/instagram/types';
+import { normalizeGraphPosts } from '@/lib/instagram/getInstagramPosts';
 
 // We test the manual reading path
 describe('Instagram mapping', () => {
@@ -75,5 +76,34 @@ describe('Instagram mapping', () => {
     expect(posts[0].id).toBe('abc123');
     expect(posts[0].image).toContain('example.com');
     expect(posts[0].caption).toBe('Proxy caption');
+  });
+
+  it('uses video thumbnails for Graph API posts', () => {
+    const posts = normalizeGraphPosts([
+      {
+        id: 'ig-video-1',
+        media_type: 'VIDEO',
+        media_url: 'https://example.com/video.mp4',
+        thumbnail_url: 'https://example.com/video-thumb.jpg',
+        permalink: 'https://instagram.com/p/video',
+        timestamp: '2025-01-20T10:00:00Z',
+      },
+    ]);
+
+    expect(posts).toHaveLength(1);
+    expect(posts[0].image).toBe('https://example.com/video-thumb.jpg');
+  });
+
+  it('filters Graph API posts without a usable image', () => {
+    const posts = normalizeGraphPosts([
+      {
+        id: 'ig-video-2',
+        media_type: 'VIDEO',
+        media_url: 'https://example.com/video.mp4',
+        permalink: 'https://instagram.com/p/video-2',
+      },
+    ]);
+
+    expect(posts).toHaveLength(0);
   });
 });

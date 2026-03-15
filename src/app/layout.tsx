@@ -26,32 +26,32 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'Person'],
+    name: env.coachName,
+    description: `Professional bouldering coach in ${env.coachCity}`,
+    url: env.siteUrl,
+    email: env.coachEmail,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: env.coachCity,
+    },
+    sameAs: [`https://instagram.com/${env.coachIgUsername}`],
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
-
-        {/* JSON-LD structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': ['LocalBusiness', 'Person'],
-              name: env.coachName,
-              description: `Professional bouldering coach in ${env.coachCity}`,
-              url: env.siteUrl,
-              email: env.coachEmail,
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: env.coachCity,
-              },
-              sameAs: [`https://instagram.com/${env.coachIgUsername}`],
-            }),
-          }}
-        />
       </body>
     </html>
   );

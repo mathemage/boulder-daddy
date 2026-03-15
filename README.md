@@ -113,8 +113,6 @@ cp .env.example .env.local
 | `INSTAGRAM_PROXY_URL` | No | URL for RSS/JSON proxy (when mode is `proxy`) |
 | `INSTAGRAM_GRAPH_ACCESS_TOKEN` | No | Instagram Graph API token (when mode is `graph`) |
 | `INSTAGRAM_GRAPH_USER_ID` | No | Instagram Graph API user ID (when mode is `graph`) |
-| `RECAPTCHA_SITE_KEY` | No | Google reCAPTCHA site key |
-| `RECAPTCHA_SECRET_KEY` | No | Google reCAPTCHA secret key |
 | `NEXT_PUBLIC_ANALYTICS` | No | Analytics provider identifier |
 
 ## Instagram Integration

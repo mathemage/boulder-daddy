@@ -2,9 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { CTAButton } from './CTAButton';
-import { env } from '@/lib/env';
 
-export function Hero() {
+interface HeroProps {
+  coachCity: string;
+}
+
+export function Hero({ coachCity }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-slate-900 px-4 py-24 text-white md:py-32">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
@@ -24,9 +27,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mb-8 max-w-2xl text-lg text-slate-300 md:text-xl"
         >
-          Professional bouldering coaching in {env.coachCity}. Whether you are
-          stepping on the wall for the first time or projecting your hardest
-          grade, I will help you move with more efficiency, confidence, and joy.
+          Professional bouldering coaching in {coachCity}. Whether you are stepping on the wall
+          for the first time or projecting your hardest grade, I will help you move with more
+          efficiency, confidence, and joy.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
