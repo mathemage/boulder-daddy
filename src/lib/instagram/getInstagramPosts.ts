@@ -1,12 +1,25 @@
-import { InstagramPost } from './types';
-import { env } from '@/lib/env';
+import { readFile } from 'fs/promises';
 import path from 'path';
-import { readFileSync } from 'fs';
+import { unstable_cache } from 'next/cache';
+import { env } from '@/lib/env';
+import { InstagramPost } from './types';
 
-async function getManualPosts(): Promise<InstagramPost[]> {
+const INSTAGRAM_REVALIDATE_SECONDS = 21600;
+
+interface GraphMediaItem {
+  id: string;
+  media_type?: 'IMAGE' | 'VIDEO' | 'CAROUSEL_ALBUM';
+  media_url?: string;
+  thumbnail_url?: string;
+  caption?: string;
+  permalink?: string;
+  timestamp?: string;
+}
+
+async function readManualPosts(): Promise<InstagramPost[]> {
   try {
     const filePath = path.resolve(process.cwd(), env.instagram.manualJsonPath);
-    const raw = readFileSync(filePath, 'utf-8');
+    const raw = await readFile(filePath, 'utf-8');
     const data = JSON.parse(raw) as InstagramPost[];
     return data;
   } catch (error) {
@@ -14,6 +27,10 @@ async function getManualPosts(): Promise<InstagramPost[]> {
     return [];
   }
 }
+
+const getManualPosts = unstable_cache(readManualPosts, ['instagram-manual-posts', env.instagram.manualJsonPath], {
+  revalidate: INSTAGRAM_REVALIDATE_SECONDS,
+});
 
 async function getProxyPosts(): Promise<InstagramPost[]> {
   if (!env.instagram.proxyUrl) {
@@ -23,7 +40,7 @@ async function getProxyPosts(): Promise<InstagramPost[]> {
 
   try {
     const res = await fetch(env.instagram.proxyUrl, {
-      next: { revalidate: 21600 }, // 6 hours
+      next: { revalidate: INSTAGRAM_REVALIDATE_SECONDS },
     });
 
     if (!res.ok) {
@@ -53,6 +70,18 @@ async function getProxyPosts(): Promise<InstagramPost[]> {
   }
 }
 
+export function normalizeGraphPosts(items: GraphMediaItem[]): InstagramPost[] {
+  return items
+    .map((item) => ({
+      id: item.id,
+      image: item.media_type === 'VIDEO' ? item.thumbnail_url || '' : item.media_url || item.thumbnail_url || '',
+      caption: item.caption || '',
+      url: item.permalink || '',
+      timestamp: item.timestamp || new Date().toISOString(),
+    }))
+    .filter((post) => post.id && post.image);
+}
+
 async function getGraphPosts(): Promise<InstagramPost[]> {
   if (!env.instagram.graphAccessToken || !env.instagram.graphUserId) {
     console.warn('Instagram Graph API credentials not set, falling back to manual posts');
@@ -60,13 +89,13 @@ async function getGraphPosts(): Promise<InstagramPost[]> {
   }
 
   try {
-    const url = `https://graph.facebook.com/v21.0/${env.instagram.graphUserId}/media?fields=id,caption,media_url,permalink,timestamp`;
+    const url = `https://graph.facebook.com/v21.0/${env.instagram.graphUserId}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp`;
 
     const res = await fetch(url, {
       headers: {
         Authorization: `Bearer ${env.instagram.graphAccessToken}`,
       },
-      next: { revalidate: 21600 }, // 6 hours
+      next: { revalidate: INSTAGRAM_REVALIDATE_SECONDS },
     });
 
     if (!res.ok) {
@@ -75,15 +104,7 @@ async function getGraphPosts(): Promise<InstagramPost[]> {
 
     const json = await res.json();
 
-    return (json.data || []).map(
-      (item: { id: string; media_url?: string; caption?: string; permalink?: string; timestamp?: string }) => ({
-        id: item.id,
-        image: item.media_url || '',
-        caption: item.caption || '',
-        url: item.permalink || '',
-        timestamp: item.timestamp || new Date().toISOString(),
-      }),
-    );
+    return normalizeGraphPosts((json.data || []) as GraphMediaItem[]);
   } catch (error) {
     console.error('Failed to fetch from Instagram Graph API:', error);
     return getManualPosts();

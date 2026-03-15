@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { InstagramPost } from '@/lib/instagram/types';
 import { LightboxModal } from './LightboxModal';
-import { env } from '@/lib/env';
 
 interface InstagramGalleryProps {
   posts: InstagramPost[];
+  coachIgUsername: string;
 }
 
-export function InstagramGallery({ posts }: InstagramGalleryProps) {
+export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryProps) {
   const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
 
   if (posts.length === 0) return null;
@@ -26,12 +26,12 @@ export function InstagramGallery({ posts }: InstagramGalleryProps) {
           <p className="mx-auto max-w-2xl text-slate-600">
             Follow the latest sends, sessions, and adventures on{' '}
             <a
-              href={`https://instagram.com/${env.coachIgUsername}`}
+              href={`https://instagram.com/${coachIgUsername}`}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-slate-900 underline hover:no-underline"
             >
-              @{env.coachIgUsername}
+              @{coachIgUsername}
             </a>
           </p>
         </div>

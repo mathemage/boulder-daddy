@@ -12,9 +12,5 @@ export const env = {
     graphAccessToken: process.env.INSTAGRAM_GRAPH_ACCESS_TOKEN || '',
     graphUserId: process.env.INSTAGRAM_GRAPH_USER_ID || '',
   },
-  recaptcha: {
-    siteKey: process.env.RECAPTCHA_SITE_KEY || '',
-    secretKey: process.env.RECAPTCHA_SECRET_KEY || '',
-  },
   analytics: process.env.NEXT_PUBLIC_ANALYTICS || '',
 };
