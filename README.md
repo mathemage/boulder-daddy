@@ -100,20 +100,20 @@ cp .env.example .env.local
 
 ### Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `SITE_URL` | Yes | Your site URL (e.g., `https://yourdomain.com`) |
-| `COACH_NAME` | Yes | Your name as displayed on the site |
-| `COACH_CITY` | Yes | Your city/location |
-| `COACH_EMAIL` | Yes | Your contact email |
-| `COACH_IG_USERNAME` | Yes | Your Instagram handle |
-| `BOOKING_URL` | No | External booking link (shows "Book a Session" button if set) |
-| `INSTAGRAM_MODE` | Yes | `manual`, `proxy`, or `graph` |
-| `INSTAGRAM_MANUAL_JSON_PATH` | No | Path to manual Instagram JSON (default: `src/content/instagram.json`) |
-| `INSTAGRAM_PROXY_URL` | No | URL for RSS/JSON proxy (when mode is `proxy`) |
-| `INSTAGRAM_GRAPH_ACCESS_TOKEN` | No | Instagram Graph API token (when mode is `graph`) |
-| `INSTAGRAM_GRAPH_USER_ID` | No | Instagram Graph API user ID (when mode is `graph`) |
-| `NEXT_PUBLIC_ANALYTICS` | No | Analytics provider identifier |
+| Variable                       | Required | Description                                                           |
+| ------------------------------ | -------- | --------------------------------------------------------------------- |
+| `SITE_URL`                     | Yes      | Your site URL (e.g., `https://yourdomain.com`)                        |
+| `COACH_NAME`                   | Yes      | Your name as displayed on the site                                    |
+| `COACH_CITY`                   | Yes      | Your city/location                                                    |
+| `COACH_EMAIL`                  | Yes      | Your contact email                                                    |
+| `COACH_IG_USERNAME`            | Yes      | Your Instagram handle                                                 |
+| `BOOKING_URL`                  | No       | External booking link (shows "Book a Session" button if set)          |
+| `INSTAGRAM_MODE`               | Yes      | `manual`, `proxy`, or `graph`                                         |
+| `INSTAGRAM_MANUAL_JSON_PATH`   | No       | Path to manual Instagram JSON (default: `src/content/instagram.json`) |
+| `INSTAGRAM_PROXY_URL`          | No       | URL for RSS/JSON proxy (when mode is `proxy`)                         |
+| `INSTAGRAM_GRAPH_ACCESS_TOKEN` | No       | Instagram Graph API token (when mode is `graph`)                      |
+| `INSTAGRAM_GRAPH_USER_ID`      | No       | Instagram Graph API user ID (when mode is `graph`)                    |
+| `NEXT_PUBLIC_ANALYTICS`        | No       | Analytics provider identifier                                         |
 
 ## Instagram Integration
 
@@ -166,6 +166,7 @@ The contact form submits to `/api/contact` which validates with Zod and sends vi
 **In production**: Integrate with your email provider. The file includes a commented Resend example. You can also integrate SendGrid, Postmark, etc.
 
 Spam protection includes:
+
 - Honeypot field (hidden from users, catches bots)
 - Optional reCAPTCHA (set env vars to enable)
 
@@ -173,8 +174,24 @@ Spam protection includes:
 
 1. Push your repo to GitHub
 2. Import the project in [Vercel](https://vercel.com)
-3. Add your environment variables in the Vercel dashboard
+3. Add the environment variables from the configuration table above in the Vercel dashboard for both the **Preview** and **Production** environments
 4. Deploy — Vercel auto-detects Next.js
+
+### Pull request previews with GitHub Actions
+
+This repo includes `.github/workflows/preview.yml` to create a Vercel preview deployment for each opened, reopened, or updated pull request.
+
+Add these repository secrets in **Settings → Secrets and variables → Actions**:
+
+| Secret              | How to obtain                                      |
+| ------------------- | -------------------------------------------------- |
+| `VERCEL_TOKEN`      | Vercel dashboard → **Account Settings → Tokens**   |
+| `VERCEL_ORG_ID`     | `.vercel/project.json` after running `vercel link` |
+| `VERCEL_PROJECT_ID` | `.vercel/project.json` after running `vercel link` |
+
+The workflow installs dependencies, runs `pnpm test`, pulls the Vercel **Preview** environment, builds with `vercel build`, deploys with `vercel deploy --prebuilt`, and updates a stable PR comment with the latest preview URL.
+
+To keep previews consistent with production, mirror the same runtime variable keys from the configuration table above in Vercel's **Preview** environment. If a value should differ for previews, set it there explicitly; otherwise, copy the production value into Preview as well.
 
 ## Development
 
