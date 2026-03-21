@@ -177,23 +177,18 @@ Spam protection includes:
 3. Add the environment variables from the configuration table above in the Vercel dashboard for both the **Preview** and **Production** environments
 4. Deploy — Vercel auto-detects Next.js
 
-### Pull request previews with GitHub Actions
+### Pull request previews in Vercel
 
-This repo includes `.github/workflows/preview.yml` to create a Vercel preview deployment for each opened, reopened, or updated pull request.
+If this repository is connected to Vercel through **Project Settings → Git**, Vercel automatically creates **Preview** deployments for pull requests and non-`main` branches.
 
-Add these repository secrets in **Settings → Secrets and variables → Actions**:
+You can view those previews in:
 
-| Secret              | How to obtain                                      |
-| ------------------- | -------------------------------------------------- |
-| `VERCEL_TOKEN`      | Vercel dashboard → **Account Settings → Tokens**   |
-| `VERCEL_ORG_ID`     | `.vercel/project.json` after running `vercel link` |
-| `VERCEL_PROJECT_ID` | `.vercel/project.json` after running `vercel link` |
-
-If any of these secrets are missing, the workflow fails fast with a clear configuration error before it calls the Vercel CLI.
-
-The workflow installs dependencies, runs `pnpm test`, pulls the Vercel **Preview** environment, builds with `vercel build`, deploys with `vercel deploy --prebuilt`, and updates a stable PR comment with the latest preview URL.
+- the pull request **Checks** and **Conversation** tabs via the Vercel GitHub app
+- the Vercel dashboard under **Deployments** filtered to the **Preview** environment
 
 To keep previews consistent with production, mirror the same runtime variable keys from the configuration table above in Vercel's **Preview** environment. If a value should differ for previews, set it there explicitly; otherwise, copy the production value into Preview as well.
+
+Because Vercel already handles preview deployments for connected repositories, this project does not need a separate GitHub Actions workflow to deploy PR previews.
 
 ## Development
 
