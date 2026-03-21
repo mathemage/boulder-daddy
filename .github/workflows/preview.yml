@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
   pull-requests: write
 
 concurrency:
@@ -47,7 +48,7 @@ jobs:
         run: pnpm test
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@50.34.3
 
       - name: Pull Vercel preview configuration
         env:
