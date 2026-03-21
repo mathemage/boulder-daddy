@@ -47,6 +47,35 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+      - name: Validate Vercel preview configuration
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          set -euo pipefail
+          missing=()
+          [[ -n "$VERCEL_TOKEN" ]] || missing+=("VERCEL_TOKEN")
+          [[ -n "$VERCEL_ORG_ID" ]] || missing+=("VERCEL_ORG_ID")
+          [[ -n "$VERCEL_PROJECT_ID" ]] || missing+=("VERCEL_PROJECT_ID")
+
+          if ((${#missing[@]})); then
+            {
+              echo "### Missing Vercel preview configuration"
+              echo
+              echo "Add these GitHub Actions secrets before rerunning the preview workflow:"
+              for secret in "${missing[@]}"; do
+                echo "- \`$secret\`"
+              done
+              echo
+              echo "See README.md: Pull request previews with GitHub Actions."
+            } >> "$GITHUB_STEP_SUMMARY"
+
+            printf 'Missing required GitHub Actions secrets: %s\n' "${missing[*]}" >&2
+            echo "Add them in Settings -> Secrets and variables -> Actions, then rerun the workflow." >&2
+            exit 1
+          fi
+
       - name: Install Vercel CLI
         run: npm install --global vercel@50.34.3
 

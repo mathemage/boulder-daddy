@@ -189,6 +189,8 @@ Add these repository secrets in **Settings → Secrets and variables → Actions
 | `VERCEL_ORG_ID`     | `.vercel/project.json` after running `vercel link` |
 | `VERCEL_PROJECT_ID` | `.vercel/project.json` after running `vercel link` |
 
+If any of these secrets are missing, the workflow fails fast with a clear configuration error before it calls the Vercel CLI.
+
 The workflow installs dependencies, runs `pnpm test`, pulls the Vercel **Preview** environment, builds with `vercel build`, deploys with `vercel deploy --prebuilt`, and updates a stable PR comment with the latest preview URL.
 
 To keep previews consistent with production, mirror the same runtime variable keys from the configuration table above in Vercel's **Preview** environment. If a value should differ for previews, set it there explicitly; otherwise, copy the production value into Preview as well.
