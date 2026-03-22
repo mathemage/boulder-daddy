@@ -7,6 +7,19 @@ interface HeroProps {
   coachCity: string;
 }
 
+const projectBadges = [
+  {
+    alt: 'GitHub Actions CI status badge',
+    href: 'https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml',
+    src: 'https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main',
+  },
+  {
+    alt: 'MIT License badge',
+    href: 'https://choosealicense.com/licenses/mit/',
+    src: 'https://img.shields.io/badge/License-MIT-yellow.svg',
+  },
+] as const;
+
 export function Hero({ coachCity }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-slate-900 px-4 py-24 text-white md:py-32">
@@ -18,8 +31,7 @@ export function Hero({ coachCity }: HeroProps) {
           transition={{ duration: 0.6 }}
           className="mb-6 text-4xl font-bold tracking-tight md:text-6xl"
         >
-          Climb Smarter.{' '}
-          <span className="text-slate-400">Send Harder.</span>
+          Climb Smarter. <span className="text-slate-400">Send Harder.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -27,8 +39,8 @@ export function Hero({ coachCity }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mb-8 max-w-2xl text-lg text-slate-300 md:text-xl"
         >
-          Professional bouldering coaching in {coachCity}. Whether you are stepping on the wall
-          for the first time or projecting your hardest grade, I will help you move with more
+          Professional bouldering coaching in {coachCity}. Whether you are stepping on the wall for
+          the first time or projecting your hardest grade, I will help you move with more
           efficiency, confidence, and joy.
         </motion.p>
         <motion.div
@@ -43,6 +55,26 @@ export function Hero({ coachCity }: HeroProps) {
           <CTAButton href="/coaching" size="lg" variant="secondary">
             Learn More
           </CTAButton>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6 flex flex-wrap justify-center gap-3"
+        >
+          {projectBadges.map((badge) => (
+            <a
+              key={badge.href}
+              href={badge.href}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-white/5 px-2 py-1 ring-1 ring-white/10 transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              {/* Remote SVG badges are displayed directly to avoid extra Next.js image config. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={badge.src} alt={badge.alt} className="block h-5 w-auto" loading="lazy" />
+            </a>
+          ))}
         </motion.div>
       </div>
     </section>
