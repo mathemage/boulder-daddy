@@ -188,7 +188,7 @@ You can view those previews in:
 
 To keep previews consistent with production, mirror the same runtime variable keys from the configuration table above in Vercel's **Preview** environment. If a value should differ for previews, set it there explicitly; otherwise, copy the production value into Preview as well.
 
-Because Vercel already handles preview deployments for connected repositories, this project does not need a separate GitHub Actions workflow to deploy PR previews.
+Because Vercel already handles preview deployments for connected repositories, this project does not need a separate GitHub Actions workflow to deploy PR previews. GitHub Actions is used here only for CI validation such as lint, test, and build checks.
 
 ## Development
 
