@@ -67,7 +67,7 @@ export function Hero({ coachCity }: HeroProps) {
               key={badge.href}
               href={badge.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="rounded-full bg-white/5 px-2 py-1 ring-1 ring-white/10 transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               {/* Remote SVG badges are displayed directly to avoid extra Next.js image config. */}
