@@ -14,9 +14,9 @@ const projectBadges = [
     src: 'https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main',
   },
   {
-    alt: 'MIT License badge',
-    href: 'https://choosealicense.com/licenses/mit/',
-    src: 'https://img.shields.io/badge/License-MIT-yellow.svg',
+    alt: 'Apache 2.0 code license badge',
+    href: 'https://github.com/mathemage/boulder-daddy#license',
+    src: 'https://img.shields.io/badge/Code-Apache%202.0-blue.svg',
   },
 ] as const;
 

@@ -1,7 +1,8 @@
 # Boulder Daddy
 
 [![CI](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/)
+[![Code: Apache-2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](./LICENSE)
+[![Content: All rights reserved](https://img.shields.io/badge/Content-All%20rights%20reserved-lightgrey.svg)](./LICENSE-CONTENT)
 
 Professional bouldering coaching website built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**. Features Instagram integration, a contact form with validation, SEO metadata, and a clean, responsive design.
 
@@ -218,4 +219,14 @@ pnpm test:watch   # Run tests in watch mode
 
 ## License
 
-See [LICENSE](./LICENSE).
+The software source code in this repository is licensed under the
+[Apache License 2.0](./LICENSE).
+
+Branding, site copy, testimonials, pricing/content data, and image/media
+assets are not licensed under Apache-2.0 and remain all rights reserved.
+See [LICENSE-CONTENT](./LICENSE-CONTENT) for the proprietary notice. This
+includes `src/content/` and any custom project assets in `public/` unless a
+file states otherwise.
+
+Apache-2.0 also does not grant trademark rights in the Boulder Daddy name
+or branding. Third-party assets remain subject to their own terms.
