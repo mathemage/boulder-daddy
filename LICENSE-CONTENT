@@ -1,0 +1,29 @@
+Proprietary Content, Branding, and Media Notice
+
+Copyright (c) 2026 Karel Ha
+All rights reserved.
+
+This repository contains both Apache-2.0 licensed software code and
+proprietary non-code materials.
+
+Unless a file states otherwise, the following project-specific materials
+are not licensed under the Apache License 2.0 and remain proprietary:
+
+- files in `src/content/`
+- custom branding, image, and media assets in `public/`
+- the Boulder Daddy name, logos, wordmarks, and other branding
+- written site copy, testimonials, pricing information, and editorial content
+- photographs, images, graphics, and other media assets
+
+You may not copy, modify, distribute, publicly display, or otherwise use
+those proprietary materials without prior written permission from the
+copyright holder.
+
+For clarity, Apache-2.0 applies to the software source code in this
+repository except for the proprietary materials identified above and any
+other file or asset that carries a different license or notice.
+
+Third-party names, logos, and assets remain the property of their
+respective owners and may be subject to separate terms.
+
+No trademark or branding rights are granted.

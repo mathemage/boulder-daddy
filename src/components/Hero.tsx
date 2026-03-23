@@ -10,13 +10,21 @@ interface HeroProps {
 const projectBadges = [
   {
     alt: 'GitHub Actions CI status badge',
+    external: true,
     href: 'https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml',
     src: 'https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main',
   },
   {
-    alt: 'MIT License badge',
-    href: 'https://choosealicense.com/licenses/mit/',
-    src: 'https://img.shields.io/badge/License-MIT-yellow.svg',
+    alt: 'Apache 2.0 code license badge',
+    external: true,
+    href: 'https://choosealicense.com/licenses/apache-2.0/',
+    src: 'https://img.shields.io/badge/Code-Apache%202.0-blue.svg',
+  },
+  {
+    alt: 'All rights reserved content notice badge',
+    external: false,
+    href: '/legal/licensing#content-license',
+    src: 'https://img.shields.io/badge/Content-All%20rights%20reserved-lightgrey.svg',
   },
 ] as const;
 
@@ -66,8 +74,8 @@ export function Hero({ coachCity }: HeroProps) {
             <a
               key={badge.href}
               href={badge.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={badge.external ? '_blank' : undefined}
+              rel={badge.external ? 'noopener noreferrer' : undefined}
               className="rounded-full bg-white/5 px-2 py-1 ring-1 ring-white/10 transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               {/* Remote SVG badges are displayed directly to avoid extra Next.js image config. */}
