@@ -1,7 +1,7 @@
 # Boulder Daddy
 
 [![CI](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml)
-[![Code: Apache-2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](./LICENSE)
+[![Code: Apache-2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)
 [![Content: All rights reserved](https://img.shields.io/badge/Content-All%20rights%20reserved-lightgrey.svg)](./LICENSE-CONTENT)
 
 Professional bouldering coaching website built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**. Features Instagram integration, a contact form with validation, SEO metadata, and a clean, responsive design.
