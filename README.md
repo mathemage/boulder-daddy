@@ -1,4 +1,4 @@
-# mathemage
+# boulder-daddy: Professional website for coaching and teaching bouldering/climbing by @mathemage
 
 [![CI](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml)
 [![Code: Apache-2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)
