@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import { siteConfig } from '@/content/site';
 
 const LAST_UPDATED = 'March 2026';
 
 export const metadata: Metadata = {
   title: 'Licensing',
-  description: 'License summary for the Boulder Daddy website code, branding, content, and media.',
+  description: `License summary for the ${siteConfig.brandName} website code, branding, content, and media.`,
 };
 
 export default function LicensingPage() {
@@ -50,8 +51,8 @@ export default function LicensingPage() {
 
           <h2 className="mb-4 text-xl font-bold text-slate-900">Trademarks</h2>
           <p>
-            No trademark or branding rights are granted in the Boulder Daddy name, logos, or other
-            brand assets. Third-party assets remain subject to their own terms.
+            No trademark or branding rights are granted in the {siteConfig.brandName} name, logos,
+            or other brand assets. Third-party assets remain subject to their own terms.
           </p>
         </div>
       </section>

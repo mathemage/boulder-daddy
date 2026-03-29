@@ -1,4 +1,4 @@
-# Boulder Daddy
+# mathemage
 
 [![CI](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml)
 [![Code: Apache-2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)
@@ -76,6 +76,7 @@ src/
 │   └── ContactForm.tsx     # Contact form with validation
 ├── content/                # Content data (easy to edit)
 │   ├── services.ts         # Coaching offerings
+│   ├── site.ts             # Public coach profile data
 │   ├── pricing.ts          # Pricing tiers
 │   ├── testimonials.ts     # Client testimonials
 │   ├── faqs.ts             # FAQ entries
@@ -96,20 +97,19 @@ src/
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` and update the values:
+Copy `.env.example` to `.env.local` and update the environment-specific values:
 
 ```bash
 cp .env.example .env.local
 ```
+
+Public branding and coach profile values (brand name, coach name, city, and email) live in `src/content/site.ts` so they can be versioned with the rest of your site content.
 
 ### Environment Variables
 
 | Variable                       | Required | Description                                                           |
 | ------------------------------ | -------- | --------------------------------------------------------------------- |
 | `SITE_URL`                     | Yes      | Your site URL (e.g., `https://yourdomain.com`)                        |
-| `COACH_NAME`                   | Yes      | Your name as displayed on the site                                    |
-| `COACH_CITY`                   | Yes      | Your city/location                                                    |
-| `COACH_EMAIL`                  | Yes      | Your contact email                                                    |
 | `COACH_IG_USERNAME`            | Yes      | Your Instagram handle                                                 |
 | `BOOKING_URL`                  | No       | External booking link (shows "Book a Session" button if set)          |
 | `INSTAGRAM_MODE`               | Yes      | `manual`, `proxy`, or `graph`                                         |
@@ -153,6 +153,7 @@ If proxy or Graph API calls fail, the service automatically falls back to manual
 
 All site content lives in `src/content/`:
 
+- **Site profile**: Edit `site.ts` to set your public brand name, coach name, city, and email
 - **Services**: Edit `services.ts` to add/remove/modify coaching offerings
 - **Pricing**: Edit `pricing.ts` to update tiers and features
 - **Testimonials**: Edit `testimonials.ts` to add client stories
@@ -209,7 +210,7 @@ pnpm test:watch   # Run tests in watch mode
 
 ## TODOs
 
-- [ ] Set your real coach name, city, and email in `.env.local`
+- [x] Set your real coach name, city, and email in `src/content/site.ts`
 - [ ] Replace placeholder Instagram posts in `src/content/instagram.json` with real content
 - [ ] Configure Instagram Graph API (optional — set env vars)
 - [ ] Set up email provider (Resend, SendGrid, etc.) in `src/lib/email/index.ts`
@@ -228,5 +229,5 @@ See [LICENSE-CONTENT](./LICENSE-CONTENT) for the proprietary notice. This
 includes `src/content/` and any custom project assets in `public/` unless a
 file states otherwise.
 
-Apache-2.0 also does not grant trademark rights in the Boulder Daddy name
+Apache-2.0 also does not grant trademark rights in the mathemage name
 or branding. Third-party assets remain subject to their own terms.

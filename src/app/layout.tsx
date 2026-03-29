@@ -1,20 +1,21 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { siteConfig } from '@/content/site';
 import { env } from '@/lib/env';
 import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
-    default: `${env.coachName} — Bouldering Coach in ${env.coachCity}`,
-    template: `%s | ${env.coachName}`,
+    default: `${siteConfig.brandName} — Bouldering Coach in ${siteConfig.coachCity}`,
+    template: `%s | ${siteConfig.brandName}`,
   },
-  description: `Professional bouldering and climbing coaching in ${env.coachCity}. Improve your technique, send harder grades, and stay injury-free with personalised coaching from ${env.coachName}.`,
+  description: `Professional bouldering and climbing coaching in ${siteConfig.coachCity}. Improve your technique, send harder grades, and stay injury-free with personalised coaching from ${siteConfig.coachName}.`,
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: env.coachName,
+    siteName: siteConfig.brandName,
   },
   twitter: {
     card: 'summary_large_image',
@@ -29,13 +30,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Person'],
-    name: env.coachName,
-    description: `Professional bouldering coach in ${env.coachCity}`,
+    name: siteConfig.coachName,
+    alternateName: siteConfig.brandName,
+    description: `Professional bouldering coach in ${siteConfig.coachCity}`,
     url: env.siteUrl,
-    email: env.coachEmail,
+    email: siteConfig.coachEmail,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: env.coachCity,
+      addressLocality: siteConfig.coachCity,
     },
     sameAs: [`https://instagram.com/${env.coachIgUsername}`],
   };

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteConfig } from '@/content/site';
 import { env } from '@/lib/env';
 
 export function Footer() {
@@ -10,11 +11,11 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-900">
-              Boulder Daddy
+              {siteConfig.brandName}
             </h3>
             <p className="text-sm text-slate-600">
-              Professional bouldering coaching in {env.coachCity}. Helping climbers of all levels
-              move better, climb harder, and stay injury-free.
+              Professional bouldering coaching in {siteConfig.coachCity}. Helping climbers of all
+              levels move better, climb harder, and stay injury-free.
             </p>
           </div>
 
@@ -67,8 +68,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${env.coachEmail}`} className="hover:text-slate-900">
-                  {env.coachEmail}
+                <a href={`mailto:${siteConfig.coachEmail}`} className="hover:text-slate-900">
+                  {siteConfig.coachEmail}
                 </a>
               </li>
             </ul>
@@ -89,7 +90,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
-          © {year} {env.coachName}. All rights reserved.
+          © {year} {siteConfig.brandName}. All rights reserved.
         </div>
       </div>
     </footer>

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { Testimonials } from '@/components/Testimonials';
 import { CTAButton } from '@/components/CTAButton';
+import { siteConfig } from '@/content/site';
 import { testimonials } from '@/content/testimonials';
-import { env } from '@/lib/env';
 
 export const metadata: Metadata = {
   title: 'Results',
-  description: `See real results from ${env.coachName}'s bouldering coaching. Testimonials, progress stories, and client achievements.`,
+  description: `See real results from ${siteConfig.coachName}'s bouldering coaching. Testimonials, progress stories, and client achievements.`,
 };
 
 export default function ResultsPage() {
@@ -43,9 +43,7 @@ export default function ResultsPage() {
                       {t.afterGrade}
                     </span>
                   </div>
-                  {t.duration && (
-                    <p className="text-xs text-slate-500">in {t.duration}</p>
-                  )}
+                  {t.duration && <p className="text-xs text-slate-500">in {t.duration}</p>}
                 </div>
               ))}
           </div>
