@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
-import { siteConfig } from '@/content/site';
+import { normalizedSiteUrl } from '@/content/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.siteUrl;
+  const baseUrl = normalizedSiteUrl;
 
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },

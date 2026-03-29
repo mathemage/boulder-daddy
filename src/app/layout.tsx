@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { siteConfig } from '@/content/site';
+import { normalizedSiteUrl, siteConfig } from '@/content/site';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.siteUrl),
+  metadataBase: new URL(normalizedSiteUrl),
   title: {
     default: `${siteConfig.brandName} — Bouldering Coach in ${siteConfig.coachCity}`,
     template: `%s | ${siteConfig.brandName}`,
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: siteConfig.coachName,
     alternateName: siteConfig.brandName,
     description: `Professional bouldering coach in ${siteConfig.coachCity}`,
-    url: siteConfig.siteUrl,
+    url: normalizedSiteUrl,
     email: siteConfig.coachEmail,
     address: {
       '@type': 'PostalAddress',

@@ -17,3 +17,9 @@ export const siteConfig = {
   coachIgUsername: 'mathemage',
   bookingUrl: 'https://calendar.app.google/CUTBE7hcFyrJPbU17',
 } satisfies SiteConfig;
+
+export function normalizeSiteUrl(siteUrl: string): string {
+  return siteUrl.replace(/\/$/, '');
+}
+
+export const normalizedSiteUrl = normalizeSiteUrl(siteConfig.siteUrl);
