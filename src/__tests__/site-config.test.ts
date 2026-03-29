@@ -10,6 +10,10 @@ describe('site config', () => {
     expect(normalizeSiteUrl('https://example.com')).toBe('https://example.com');
   });
 
+  it('trims surrounding whitespace and multiple trailing slashes', () => {
+    expect(normalizeSiteUrl('  https://example.com///  ')).toBe('https://example.com');
+  });
+
   it('exports a normalized canonical site URL', () => {
     expect(normalizedSiteUrl).toBe(siteConfig.siteUrl);
     expect(normalizedSiteUrl.endsWith('/')).toBe(false);

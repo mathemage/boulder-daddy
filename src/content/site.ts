@@ -19,7 +19,7 @@ export const siteConfig = {
 } satisfies SiteConfig;
 
 export function normalizeSiteUrl(siteUrl: string): string {
-  return siteUrl.replace(/\/$/, '');
+  return siteUrl.trim().replace(/\/+$/, '');
 }
 
 export const normalizedSiteUrl = normalizeSiteUrl(siteConfig.siteUrl);
