@@ -109,7 +109,7 @@ Public site and coach values (brand name, coach name, city, email, site URL, Ins
 
 | Variable                       | Required | Description                                                           |
 | ------------------------------ | -------- | --------------------------------------------------------------------- |
-| `INSTAGRAM_MODE`               | Yes      | `manual`, `proxy`, or `graph`                                         |
+| `INSTAGRAM_MODE`               | No       | `manual`, `proxy`, or `graph` (default: `manual`)                     |
 | `INSTAGRAM_MANUAL_JSON_PATH`   | No       | Path to manual Instagram JSON (default: `src/content/instagram.json`) |
 | `INSTAGRAM_PROXY_URL`          | No       | URL for RSS/JSON proxy (when mode is `proxy`)                         |
 | `INSTAGRAM_GRAPH_ACCESS_TOKEN` | No       | Instagram Graph API token (when mode is `graph`)                      |

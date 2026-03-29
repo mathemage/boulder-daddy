@@ -15,7 +15,7 @@ describe('site config', () => {
   });
 
   it('exports a normalized canonical site URL', () => {
-    expect(normalizedSiteUrl).toBe(siteConfig.siteUrl);
+    expect(normalizedSiteUrl).toBe(normalizeSiteUrl(siteConfig.siteUrl));
     expect(normalizedSiteUrl.endsWith('/')).toBe(false);
   });
 });
