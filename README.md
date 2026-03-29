@@ -76,6 +76,7 @@ src/
 │   └── ContactForm.tsx     # Contact form with validation
 ├── content/                # Content data (easy to edit)
 │   ├── services.ts         # Coaching offerings
+│   ├── site.ts             # Public coach profile data
 │   ├── pricing.ts          # Pricing tiers
 │   ├── testimonials.ts     # Client testimonials
 │   ├── faqs.ts             # FAQ entries
@@ -96,20 +97,19 @@ src/
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` and update the values:
+Copy `.env.example` to `.env.local` and update the environment-specific values:
 
 ```bash
 cp .env.example .env.local
 ```
+
+Public coach profile values (name, city, and email) live in `src/content/site.ts` so they can be versioned with the rest of your site content.
 
 ### Environment Variables
 
 | Variable                       | Required | Description                                                           |
 | ------------------------------ | -------- | --------------------------------------------------------------------- |
 | `SITE_URL`                     | Yes      | Your site URL (e.g., `https://yourdomain.com`)                        |
-| `COACH_NAME`                   | Yes      | Your name as displayed on the site                                    |
-| `COACH_CITY`                   | Yes      | Your city/location                                                    |
-| `COACH_EMAIL`                  | Yes      | Your contact email                                                    |
 | `COACH_IG_USERNAME`            | Yes      | Your Instagram handle                                                 |
 | `BOOKING_URL`                  | No       | External booking link (shows "Book a Session" button if set)          |
 | `INSTAGRAM_MODE`               | Yes      | `manual`, `proxy`, or `graph`                                         |
@@ -153,6 +153,7 @@ If proxy or Graph API calls fail, the service automatically falls back to manual
 
 All site content lives in `src/content/`:
 
+- **Site profile**: Edit `site.ts` to set your public coach name, city, and email
 - **Services**: Edit `services.ts` to add/remove/modify coaching offerings
 - **Pricing**: Edit `pricing.ts` to update tiers and features
 - **Testimonials**: Edit `testimonials.ts` to add client stories
@@ -209,7 +210,7 @@ pnpm test:watch   # Run tests in watch mode
 
 ## TODOs
 
-- [ ] Set your real coach name, city, and email in `.env.local`
+- [x] Set your real coach name, city, and email in `src/content/site.ts`
 - [ ] Replace placeholder Instagram posts in `src/content/instagram.json` with real content
 - [ ] Configure Instagram Graph API (optional — set env vars)
 - [ ] Set up email provider (Resend, SendGrid, etc.) in `src/lib/email/index.ts`

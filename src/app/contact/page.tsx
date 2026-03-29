@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+import { siteConfig } from '@/content/site';
 import { env } from '@/lib/env';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Get in touch with ${env.coachName} for bouldering coaching inquiries in ${env.coachCity}. Book a session or ask a question.`,
+  description: `Get in touch with ${siteConfig.coachName} for bouldering coaching inquiries in ${siteConfig.coachCity}. Book a session or ask a question.`,
 };
 
 export default function ContactPage() {
@@ -13,8 +14,8 @@ export default function ContactPage() {
       <section className="bg-slate-900 px-4 py-20 text-center text-white">
         <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Get in Touch</h1>
         <p className="mx-auto max-w-2xl text-lg text-slate-300">
-          Ready to start climbing smarter? Fill out the form below and I will get back to you
-          within 24 hours.
+          Ready to start climbing smarter? Fill out the form below and I will get back to you within
+          24 hours.
         </p>
       </section>
 
@@ -24,10 +25,10 @@ export default function ContactPage() {
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
               <h3 className="mb-1 text-sm font-bold text-slate-900">Email</h3>
               <a
-                href={`mailto:${env.coachEmail}`}
+                href={`mailto:${siteConfig.coachEmail}`}
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                {env.coachEmail}
+                {siteConfig.coachEmail}
               </a>
             </div>
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">

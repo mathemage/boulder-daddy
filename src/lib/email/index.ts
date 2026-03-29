@@ -1,4 +1,4 @@
-import { env } from '@/lib/env';
+import { siteConfig } from '@/content/site';
 
 export interface EmailPayload {
   name: string;
@@ -18,7 +18,7 @@ export async function sendContactEmail(payload: EmailPayload): Promise<{ success
   // const resend = new Resend(process.env.RESEND_API_KEY);
   // await resend.emails.send({
   //   from: 'noreply@yourdomain.com',
-  //   to: env.coachEmail,
+  //   to: siteConfig.coachEmail,
   //   subject: `New coaching inquiry from ${payload.name}`,
   //   text: formatEmail(payload),
   // });
@@ -35,7 +35,7 @@ export async function sendContactEmail(payload: EmailPayload): Promise<{ success
     console.log(`Goals: ${payload.goals}`);
     console.log(`Preferred Days: ${payload.preferredDays.join(', ')}`);
     console.log(`Message: ${payload.message}`);
-    console.log(`Would be sent to: ${env.coachEmail}`);
+    console.log(`Would be sent to: ${siteConfig.coachEmail}`);
     console.log('───────────────────────────────────');
     return { success: true };
   }

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { services } from '@/content/services';
+import { siteConfig } from '@/content/site';
 import { CTAButton } from '@/components/CTAButton';
-import { env } from '@/lib/env';
 
 export const metadata: Metadata = {
   title: 'Coaching',
-  description: `Bouldering coaching services in ${env.coachCity}. From beginner fundamentals to advanced project coaching — find the right session for your level.`,
+  description: `Bouldering coaching services in ${siteConfig.coachCity}. From beginner fundamentals to advanced project coaching — find the right session for your level.`,
 };
 
 export default function CoachingPage() {
@@ -15,8 +15,8 @@ export default function CoachingPage() {
       <section className="bg-slate-900 px-4 py-20 text-center text-white">
         <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Coaching</h1>
         <p className="mx-auto max-w-2xl text-lg text-slate-300">
-          Personalised bouldering coaching designed to meet you where you are and take you where
-          you want to go.
+          Personalised bouldering coaching designed to meet you where you are and take you where you
+          want to go.
         </p>
       </section>
 

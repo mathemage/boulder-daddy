@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { PricingTable } from '@/components/PricingTable';
 import { FAQ } from '@/components/FAQ';
-import { env } from '@/lib/env';
+import { siteConfig } from '@/content/site';
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: `Bouldering coaching pricing in ${env.coachCity}. Flexible single sessions, multi-session packs, and monthly programmes.`,
+  description: `Bouldering coaching pricing in ${siteConfig.coachCity}. Flexible single sessions, multi-session packs, and monthly programmes.`,
 };
 
 export default function PricingPage() {

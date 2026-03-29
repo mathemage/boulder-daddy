@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { env } from '@/lib/env';
+import { siteConfig } from '@/content/site';
 
 const LAST_UPDATED = 'March 2026';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: `Privacy policy for ${env.coachName}'s coaching website.`,
+  description: `Privacy policy for ${siteConfig.coachName}'s coaching website.`,
 };
 
 export default function PrivacyPage() {
@@ -43,8 +43,8 @@ export default function PrivacyPage() {
 
           <h2 className="mb-4 text-xl font-bold text-slate-900">4. Cookies</h2>
           <p className="mb-6">
-            This website uses only essential cookies required for the site to function. If
-            analytics are enabled, they use privacy-friendly, cookieless tracking.
+            This website uses only essential cookies required for the site to function. If analytics
+            are enabled, they use privacy-friendly, cookieless tracking.
           </p>
 
           <h2 className="mb-4 text-xl font-bold text-slate-900">5. Third-Party Services</h2>
@@ -58,8 +58,8 @@ export default function PrivacyPage() {
           <p className="mb-6">
             You have the right to request access to, correction of, or deletion of your personal
             data. To exercise these rights, please contact{' '}
-            <a href={`mailto:${env.coachEmail}`} className="text-slate-900 underline">
-              {env.coachEmail}
+            <a href={`mailto:${siteConfig.coachEmail}`} className="text-slate-900 underline">
+              {siteConfig.coachEmail}
             </a>
             .
           </p>
@@ -67,8 +67,8 @@ export default function PrivacyPage() {
           <h2 className="mb-4 text-xl font-bold text-slate-900">7. Contact</h2>
           <p>
             If you have questions about this privacy policy, please email{' '}
-            <a href={`mailto:${env.coachEmail}`} className="text-slate-900 underline">
-              {env.coachEmail}
+            <a href={`mailto:${siteConfig.coachEmail}`} className="text-slate-900 underline">
+              {siteConfig.coachEmail}
             </a>
             .
           </p>

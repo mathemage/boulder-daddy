@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { CTAButton } from '@/components/CTAButton';
-import { env } from '@/lib/env';
+import { siteConfig } from '@/content/site';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: `Learn about ${env.coachName} — professional bouldering coach in ${env.coachCity}. Coaching philosophy, safety practices, and certifications.`,
+  description: `Learn about ${siteConfig.coachName} — professional bouldering coach in ${siteConfig.coachCity}. Coaching philosophy, safety practices, and certifications.`,
 };
 
 export default function AboutPage() {
@@ -33,8 +33,8 @@ export default function AboutPage() {
               climbers of every level move better, progress consistently, and enjoy the process.
             </p>
             <p>
-              I&apos;m based in {env.coachCity} and coach at several local gyms as well as outdoor
-              crags in the surrounding area.
+              I&apos;m based in {siteConfig.coachCity} and coach at several local gyms as well as
+              outdoor crags in the surrounding area.
             </p>
           </div>
         </div>
