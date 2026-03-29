@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { siteConfig } from '@/content/site';
 import { cn } from '@/lib/cn';
 import { CTAButton } from './CTAButton';
 
@@ -20,7 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="text-xl font-bold tracking-tight text-slate-900">
-          Boulder Daddy
+          {siteConfig.brandName}
         </Link>
 
         {/* Desktop nav */}

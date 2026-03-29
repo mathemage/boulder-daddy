@@ -8,14 +8,14 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
-    default: `${siteConfig.coachName} — Bouldering Coach in ${siteConfig.coachCity}`,
-    template: `%s | ${siteConfig.coachName}`,
+    default: `${siteConfig.brandName} — Bouldering Coach in ${siteConfig.coachCity}`,
+    template: `%s | ${siteConfig.brandName}`,
   },
   description: `Professional bouldering and climbing coaching in ${siteConfig.coachCity}. Improve your technique, send harder grades, and stay injury-free with personalised coaching from ${siteConfig.coachName}.`,
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: siteConfig.coachName,
+    siteName: siteConfig.brandName,
   },
   twitter: {
     card: 'summary_large_image',
@@ -31,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Person'],
     name: siteConfig.coachName,
+    alternateName: siteConfig.brandName,
     description: `Professional bouldering coach in ${siteConfig.coachCity}`,
     url: env.siteUrl,
     email: siteConfig.coachEmail,

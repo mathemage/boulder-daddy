@@ -1,4 +1,4 @@
-# Boulder Daddy
+# mathemage
 
 [![CI](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mathemage/boulder-daddy/actions/workflows/ci.yml)
 [![Code: Apache-2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)
@@ -103,7 +103,7 @@ Copy `.env.example` to `.env.local` and update the environment-specific values:
 cp .env.example .env.local
 ```
 
-Public coach profile values (name, city, and email) live in `src/content/site.ts` so they can be versioned with the rest of your site content.
+Public branding and coach profile values (brand name, coach name, city, and email) live in `src/content/site.ts` so they can be versioned with the rest of your site content.
 
 ### Environment Variables
 
@@ -153,7 +153,7 @@ If proxy or Graph API calls fail, the service automatically falls back to manual
 
 All site content lives in `src/content/`:
 
-- **Site profile**: Edit `site.ts` to set your public coach name, city, and email
+- **Site profile**: Edit `site.ts` to set your public brand name, coach name, city, and email
 - **Services**: Edit `services.ts` to add/remove/modify coaching offerings
 - **Pricing**: Edit `pricing.ts` to update tiers and features
 - **Testimonials**: Edit `testimonials.ts` to add client stories
@@ -229,5 +229,5 @@ See [LICENSE-CONTENT](./LICENSE-CONTENT) for the proprietary notice. This
 includes `src/content/` and any custom project assets in `public/` unless a
 file states otherwise.
 
-Apache-2.0 also does not grant trademark rights in the Boulder Daddy name
+Apache-2.0 also does not grant trademark rights in the mathemage name
 or branding. Third-party assets remain subject to their own terms.
