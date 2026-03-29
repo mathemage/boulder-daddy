@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
 import { siteConfig } from '@/content/site';
-import { env } from '@/lib/env';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -34,23 +33,23 @@ export default function ContactPage() {
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
               <h3 className="mb-1 text-sm font-bold text-slate-900">Instagram</h3>
               <a
-                href={`https://instagram.com/${env.coachIgUsername}`}
+                href={`https://instagram.com/${siteConfig.coachIgUsername}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                @{env.coachIgUsername}
+                @{siteConfig.coachIgUsername}
               </a>
             </div>
           </div>
 
-          {env.bookingUrl && (
+          {siteConfig.bookingUrl && (
             <div className="mb-8 rounded-lg border border-slate-200 bg-slate-50 p-4 text-center">
               <p className="mb-2 text-sm text-slate-600">
                 Prefer to book directly? Use my scheduling link:
               </p>
               <a
-                href={env.bookingUrl}
+                href={siteConfig.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block rounded-lg bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"

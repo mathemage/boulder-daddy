@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { siteConfig } from '@/content/site';
-import { env } from '@/lib/env';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -59,7 +58,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={`https://instagram.com/${env.coachIgUsername}`}
+                  href={`https://instagram.com/${siteConfig.coachIgUsername}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-slate-900"

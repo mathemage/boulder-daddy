@@ -4,7 +4,6 @@ import { InstagramGallery } from '@/components/InstagramGallery';
 import { Testimonials } from '@/components/Testimonials';
 import { CTAButton } from '@/components/CTAButton';
 import { siteConfig } from '@/content/site';
-import { env } from '@/lib/env';
 import { getInstagramPosts } from '@/lib/instagram';
 
 export default async function HomePage() {
@@ -14,7 +13,7 @@ export default async function HomePage() {
     <>
       <Hero coachCity={siteConfig.coachCity} />
       <ServiceCards />
-      <InstagramGallery posts={posts} coachIgUsername={env.coachIgUsername} />
+      <InstagramGallery posts={posts} coachIgUsername={siteConfig.coachIgUsername} />
       <Testimonials />
 
       {/* CTA Section */}

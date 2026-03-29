@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { siteConfig } from '@/content/site';
-import { env } from '@/lib/env';
+import { normalizedSiteUrl, siteConfig } from '@/content/site';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.siteUrl),
+  metadataBase: new URL(normalizedSiteUrl),
   title: {
     default: `${siteConfig.brandName} — Bouldering Coach in ${siteConfig.coachCity}`,
     template: `%s | ${siteConfig.brandName}`,
@@ -33,13 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: siteConfig.coachName,
     alternateName: siteConfig.brandName,
     description: `Professional bouldering coach in ${siteConfig.coachCity}`,
-    url: env.siteUrl,
+    url: normalizedSiteUrl,
     email: siteConfig.coachEmail,
     address: {
       '@type': 'PostalAddress',
       addressLocality: siteConfig.coachCity,
     },
-    sameAs: [`https://instagram.com/${env.coachIgUsername}`],
+    sameAs: [`https://instagram.com/${siteConfig.coachIgUsername}`],
   };
 
   return (

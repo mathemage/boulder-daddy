@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
-import { env } from '@/lib/env';
+import { normalizedSiteUrl } from '@/content/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = env.siteUrl;
+  const baseUrl = normalizedSiteUrl;
 
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },

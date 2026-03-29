@@ -1,9 +1,6 @@
 // Keep environment-specific settings and secrets here.
-// Public coach profile values live in src/content/site.ts so they can be versioned.
+// Public site and coach values live in src/content/site.ts so they can be versioned.
 export const env = {
-  siteUrl: process.env.SITE_URL || 'http://localhost:3000',
-  coachIgUsername: process.env.COACH_IG_USERNAME || 'boulder_daddy',
-  bookingUrl: process.env.BOOKING_URL || '',
   instagram: {
     mode: (process.env.INSTAGRAM_MODE || 'manual') as 'manual' | 'proxy' | 'graph',
     manualJsonPath: process.env.INSTAGRAM_MANUAL_JSON_PATH || 'src/content/instagram.json',

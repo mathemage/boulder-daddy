@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { env } from '@/lib/env';
+import { normalizedSiteUrl } from '@/content/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: `${env.siteUrl}/sitemap.xml`,
+    sitemap: `${normalizedSiteUrl}/sitemap.xml`,
   };
 }
