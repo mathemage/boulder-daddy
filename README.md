@@ -76,7 +76,7 @@ src/
 │   └── ContactForm.tsx     # Contact form with validation
 ├── content/                # Content data (easy to edit)
 │   ├── services.ts         # Coaching offerings
-│   ├── site.ts             # Public coach profile data
+│   ├── site.ts             # Public site and coach data
 │   ├── pricing.ts          # Pricing tiers
 │   ├── testimonials.ts     # Client testimonials
 │   ├── faqs.ts             # FAQ entries
@@ -97,21 +97,18 @@ src/
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` and update the environment-specific values:
+Copy `.env.example` to `.env.local` and update any environment-specific values you need:
 
 ```bash
 cp .env.example .env.local
 ```
 
-Public branding and coach profile values (brand name, coach name, city, and email) live in `src/content/site.ts` so they can be versioned with the rest of your site content.
+Public site and coach values (brand name, coach name, city, email, site URL, Instagram handle, and booking URL) live in `src/content/site.ts` so they can be versioned with the rest of your site content.
 
 ### Environment Variables
 
 | Variable                       | Required | Description                                                           |
 | ------------------------------ | -------- | --------------------------------------------------------------------- |
-| `SITE_URL`                     | Yes      | Your site URL (e.g., `https://yourdomain.com`)                        |
-| `COACH_IG_USERNAME`            | Yes      | Your Instagram handle                                                 |
-| `BOOKING_URL`                  | No       | External booking link (shows "Book a Session" button if set)          |
 | `INSTAGRAM_MODE`               | Yes      | `manual`, `proxy`, or `graph`                                         |
 | `INSTAGRAM_MANUAL_JSON_PATH`   | No       | Path to manual Instagram JSON (default: `src/content/instagram.json`) |
 | `INSTAGRAM_PROXY_URL`          | No       | URL for RSS/JSON proxy (when mode is `proxy`)                         |
@@ -153,7 +150,7 @@ If proxy or Graph API calls fail, the service automatically falls back to manual
 
 All site content lives in `src/content/`:
 
-- **Site profile**: Edit `site.ts` to set your public brand name, coach name, city, and email
+- **Site profile**: Edit `site.ts` to set your public brand name, coach name, city, email, site URL, Instagram handle, and booking URL
 - **Services**: Edit `services.ts` to add/remove/modify coaching offerings
 - **Pricing**: Edit `pricing.ts` to update tiers and features
 - **Testimonials**: Edit `testimonials.ts` to add client stories
