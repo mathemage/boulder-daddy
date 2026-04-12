@@ -126,23 +126,30 @@ describe('Instagram mapping', () => {
   });
 
   it('ships twelve real manual posts for the homepage gallery', () => {
-    const manualPath = path.resolve(process.cwd(), env.instagram.manualJsonPath);
-    const raw = JSON.parse(readFileSync(manualPath, 'utf8')) as InstagramPost[];
-    const homepagePosts = raw.slice(0, HOMEPAGE_INSTAGRAM_POST_LIMIT);
+    const originalManualJsonPath = env.instagram.manualJsonPath;
+    env.instagram.manualJsonPath = 'src/content/instagram.json';
 
-    expect(raw.length).toBeGreaterThanOrEqual(HOMEPAGE_INSTAGRAM_POST_LIMIT);
-    expect(homepagePosts).toHaveLength(HOMEPAGE_INSTAGRAM_POST_LIMIT);
-    expect(homepagePosts.some((post) => post.caption.trim().length > 0)).toBe(true);
+    try {
+      const manualPath = path.resolve(process.cwd(), env.instagram.manualJsonPath);
+      const raw = JSON.parse(readFileSync(manualPath, 'utf8')) as InstagramPost[];
+      const homepagePosts = raw.slice(0, HOMEPAGE_INSTAGRAM_POST_LIMIT);
 
-    homepagePosts.forEach((post) => {
-      expect(typeof post.caption).toBe('string');
-      expect(post.image).toMatch(/^(\/|https?:\/\/)/);
-      expect(post.image).not.toContain('placehold.co');
-      expect(post.url).toMatch(
-        /^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/?$/,
-      );
-      expect(post.url).not.toContain('example');
-      expect(Number.isNaN(Date.parse(post.timestamp))).toBe(false);
-    });
+      expect(raw.length).toBeGreaterThanOrEqual(HOMEPAGE_INSTAGRAM_POST_LIMIT);
+      expect(homepagePosts).toHaveLength(HOMEPAGE_INSTAGRAM_POST_LIMIT);
+      expect(homepagePosts.some((post) => post.caption.trim().length > 0)).toBe(true);
+
+      homepagePosts.forEach((post) => {
+        expect(typeof post.caption).toBe('string');
+        expect(post.image).toMatch(/^(\/|https?:\/\/)/);
+        expect(post.image).not.toContain('placehold.co');
+        expect(post.url).toMatch(
+          /^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/?$/,
+        );
+        expect(post.url).not.toContain('example');
+        expect(Number.isNaN(Date.parse(post.timestamp))).toBe(false);
+      });
+    } finally {
+      env.instagram.manualJsonPath = originalManualJsonPath;
+    }
   });
 });
