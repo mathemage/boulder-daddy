@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { describe, it, expect } from 'vitest';
 import type { InstagramPost } from '@/lib/instagram/types';
 import { normalizeGraphPosts } from '@/lib/instagram/getInstagramPosts';
@@ -105,5 +107,21 @@ describe('Instagram mapping', () => {
     ]);
 
     expect(posts).toHaveLength(0);
+  });
+
+  it('ships twelve real manual posts for the homepage gallery', () => {
+    const manualPath = path.resolve(process.cwd(), 'src/content/instagram.json');
+    const raw = JSON.parse(readFileSync(manualPath, 'utf8')) as InstagramPost[];
+
+    expect(raw).toHaveLength(12);
+    expect(raw.filter((post) => post.caption).length).toBeGreaterThanOrEqual(6);
+
+    raw.forEach((post) => {
+      expect(post.image).toMatch(/^\/instagram\/[A-Za-z0-9_-]+\.jpg$/);
+      expect(post.image).not.toContain('placehold.co');
+      expect(post.url).toMatch(/^https:\/\/www\.instagram\.com\/reel\/[A-Za-z0-9_-]+\/$/);
+      expect(post.url).not.toContain('example');
+      expect(Number.isNaN(Date.parse(post.timestamp))).toBe(false);
+    });
   });
 });

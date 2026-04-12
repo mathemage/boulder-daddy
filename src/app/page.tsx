@@ -7,7 +7,7 @@ import { siteConfig } from '@/content/site';
 import { getInstagramPosts } from '@/lib/instagram';
 
 export default async function HomePage() {
-  const posts = await getInstagramPosts();
+  const posts = (await getInstagramPosts()).slice(0, 12);
 
   return (
     <>

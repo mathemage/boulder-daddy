@@ -127,12 +127,14 @@ Edit `src/content/instagram.json` with your posts. Each entry needs:
 ```json
 {
   "id": "unique-id",
-  "image": "https://url-to-image.jpg",
+  "image": "/instagram/POST_ID.jpg",
   "caption": "Post caption",
-  "url": "https://instagram.com/p/POST_ID",
+  "url": "https://www.instagram.com/reel/POST_ID/",
   "timestamp": "2025-01-15T10:00:00Z"
 }
 ```
+
+`image` can point at a checked-in file under `public/` or a remote image URL. The homepage gallery renders the first 12 posts, so keep the file ordered newest-first and add any curated extras after that.
 
 ### 2. Proxy
 
@@ -208,7 +210,7 @@ pnpm test:watch   # Run tests in watch mode
 ## TODOs
 
 - [x] Set your real coach name, city, and email in `src/content/site.ts`
-- [ ] Replace placeholder Instagram posts in `src/content/instagram.json` with real content
+- [x] Replace placeholder Instagram posts in `src/content/instagram.json` with real content
 - [ ] Configure Instagram Graph API (optional — set env vars)
 - [ ] Set up email provider (Resend, SendGrid, etc.) in `src/lib/email/index.ts`
 - [ ] Add real testimonials and pricing in `src/content/`

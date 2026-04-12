@@ -20,9 +20,7 @@ export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryPro
     <section className="px-4 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900">
-            On the Wall
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900">On the Wall</h2>
           <p className="mx-auto max-w-2xl text-slate-600">
             Follow the latest sends, sessions, and adventures on{' '}
             <a
@@ -36,7 +34,7 @@ export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryPro
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {posts.map((post, index) => (
             <motion.button
               key={post.id}
@@ -53,7 +51,7 @@ export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryPro
                 alt={post.caption || 'Instagram post'}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 288px"
                 loading="lazy"
                 unoptimized
               />
