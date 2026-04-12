@@ -3,6 +3,7 @@
 import { useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getInstagramPostAccessibleLabel } from '@/lib/instagram/accessibility';
 import type { InstagramPost } from '@/lib/instagram/types';
 
 interface LightboxModalProps {
@@ -36,6 +37,10 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
       previousActiveElement?.focus();
     };
   }, [post, handleKeyDown]);
+
+  const accessibleLabel = post
+    ? getInstagramPostAccessibleLabel(post.caption, 'Instagram post')
+    : 'Instagram post';
 
   return (
     <AnimatePresence>
@@ -71,7 +76,7 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
             <div className="relative aspect-square w-full max-w-2xl">
               <Image
                 src={post.image}
-                alt={post.caption || 'Instagram post'}
+                alt={accessibleLabel}
                 fill
                 className="object-cover"
                 sizes="(max-width: 672px) 100vw, 672px"
@@ -80,9 +85,7 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
             </div>
 
             <div className="p-4">
-              {post.caption && (
-                <p className="text-sm text-slate-700">{post.caption}</p>
-              )}
+              {post.caption && <p className="text-sm text-slate-700">{post.caption}</p>}
               {post.url && (
                 <a
                   href={post.url}
