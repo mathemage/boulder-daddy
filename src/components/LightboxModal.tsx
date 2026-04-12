@@ -41,6 +41,7 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
   const accessibleLabel = post
     ? getInstagramPostAccessibleLabel(post.caption, 'Instagram post')
     : 'Instagram post';
+  const shouldSkipOptimization = post ? !post.image.startsWith('/') : false;
 
   return (
     <AnimatePresence>
@@ -80,7 +81,7 @@ export function LightboxModal({ post, onClose }: LightboxModalProps) {
                 fill
                 className="object-cover"
                 sizes="(max-width: 672px) 100vw, 672px"
-                unoptimized
+                unoptimized={shouldSkipOptimization}
               />
             </div>
 

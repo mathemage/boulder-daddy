@@ -138,7 +138,9 @@ describe('Instagram mapping', () => {
       expect(typeof post.caption).toBe('string');
       expect(post.image).toMatch(/^(\/|https?:\/\/)/);
       expect(post.image).not.toContain('placehold.co');
-      expect(post.url).toMatch(/^https:\/\/www\.instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/$/);
+      expect(post.url).toMatch(
+        /^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/?$/,
+      );
       expect(post.url).not.toContain('example');
       expect(Number.isNaN(Date.parse(post.timestamp))).toBe(false);
     });

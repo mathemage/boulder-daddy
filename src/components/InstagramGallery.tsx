@@ -41,6 +41,7 @@ export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryPro
               post.caption,
               `Instagram post ${index + 1}`,
             );
+            const shouldSkipOptimization = !post.image.startsWith('/');
 
             return (
               <motion.button
@@ -60,7 +61,7 @@ export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryPro
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, (max-width: 1279px) 25vw, 288px"
                   loading="lazy"
-                  unoptimized
+                  unoptimized={shouldSkipOptimization}
                 />
                 <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/30" />
               </motion.button>
