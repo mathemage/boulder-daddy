@@ -129,12 +129,12 @@ Edit `src/content/instagram.json` with your posts. Each entry needs:
   "id": "unique-id",
   "image": "/instagram/POST_ID.jpg",
   "caption": "Post caption",
-  "url": "https://www.instagram.com/reel/POST_ID/",
+  "url": "https://www.instagram.com/p/POST_ID/",
   "timestamp": "2025-01-15T10:00:00Z"
 }
 ```
 
-`image` can point at a checked-in file under `public/` or a remote image URL. The homepage gallery renders the first 12 posts, so keep the file ordered newest-first and add any curated extras after that.
+`image` can point at a checked-in file under `public/` or a remote image URL. `url` can be either a standard Instagram post permalink (`/p/.../`) or a Reel permalink (`/reel/.../`). The homepage gallery renders the first 12 posts, so keep the file ordered newest-first and add any curated extras after that.
 
 ### 2. Proxy
 
