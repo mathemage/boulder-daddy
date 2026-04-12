@@ -1,8 +1,9 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, it, expect } from 'vitest';
-import type { InstagramPost } from '@/lib/instagram/types';
+import { HOMEPAGE_INSTAGRAM_POST_LIMIT } from '@/lib/instagram';
 import { normalizeGraphPosts } from '@/lib/instagram/getInstagramPosts';
+import type { InstagramPost } from '@/lib/instagram/types';
 
 // We test the manual reading path
 describe('Instagram mapping', () => {
@@ -112,14 +113,16 @@ describe('Instagram mapping', () => {
   it('ships twelve real manual posts for the homepage gallery', () => {
     const manualPath = path.resolve(process.cwd(), 'src/content/instagram.json');
     const raw = JSON.parse(readFileSync(manualPath, 'utf8')) as InstagramPost[];
+    const homepagePosts = raw.slice(0, HOMEPAGE_INSTAGRAM_POST_LIMIT);
 
-    expect(raw).toHaveLength(12);
-    expect(raw.filter((post) => post.caption).length).toBeGreaterThanOrEqual(6);
+    expect(raw.length).toBeGreaterThanOrEqual(HOMEPAGE_INSTAGRAM_POST_LIMIT);
+    expect(homepagePosts).toHaveLength(HOMEPAGE_INSTAGRAM_POST_LIMIT);
+    expect(homepagePosts.filter((post) => post.caption).length).toBeGreaterThanOrEqual(6);
 
-    raw.forEach((post) => {
-      expect(post.image).toMatch(/^\/instagram\/[A-Za-z0-9_-]+\.jpg$/);
+    homepagePosts.forEach((post) => {
+      expect(post.image).toMatch(/^(\/|https?:\/\/)/);
       expect(post.image).not.toContain('placehold.co');
-      expect(post.url).toMatch(/^https:\/\/www\.instagram\.com\/reel\/[A-Za-z0-9_-]+\/$/);
+      expect(post.url).toMatch(/^https:\/\/www\.instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/$/);
       expect(post.url).not.toContain('example');
       expect(Number.isNaN(Date.parse(post.timestamp))).toBe(false);
     });

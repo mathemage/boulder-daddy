@@ -51,7 +51,7 @@ export function InstagramGallery({ posts, coachIgUsername }: InstagramGalleryPro
                 alt={post.caption || 'Instagram post'}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 288px"
+                sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, (max-width: 1279px) 25vw, 288px"
                 loading="lazy"
                 unoptimized
               />
