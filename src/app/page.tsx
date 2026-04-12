@@ -4,10 +4,10 @@ import { InstagramGallery } from '@/components/InstagramGallery';
 import { Testimonials } from '@/components/Testimonials';
 import { CTAButton } from '@/components/CTAButton';
 import { siteConfig } from '@/content/site';
-import { getInstagramPosts } from '@/lib/instagram';
+import { getInstagramPosts, HOMEPAGE_INSTAGRAM_POST_LIMIT } from '@/lib/instagram';
 
 export default async function HomePage() {
-  const posts = await getInstagramPosts();
+  const posts = (await getInstagramPosts()).slice(0, HOMEPAGE_INSTAGRAM_POST_LIMIT);
 
   return (
     <>

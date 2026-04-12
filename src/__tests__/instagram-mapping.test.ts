@@ -1,6 +1,11 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { describe, it, expect } from 'vitest';
-import type { InstagramPost } from '@/lib/instagram/types';
+import { env } from '@/lib/env';
+import { HOMEPAGE_INSTAGRAM_POST_LIMIT } from '@/lib/instagram';
+import { getInstagramPostAccessibleLabel } from '@/lib/instagram/accessibility';
 import { normalizeGraphPosts } from '@/lib/instagram/getInstagramPosts';
+import type { InstagramPost } from '@/lib/instagram/types';
 
 // We test the manual reading path
 describe('Instagram mapping', () => {
@@ -105,5 +110,46 @@ describe('Instagram mapping', () => {
     ]);
 
     expect(posts).toHaveLength(0);
+  });
+
+  it('sanitizes captions for accessible Instagram labels', () => {
+    expect(
+      getInstagramPostAccessibleLabel(
+        'Triple pogo to the moon\n#bouldering #climbing #sendit',
+        'Instagram post 1',
+      ),
+    ).toBe('Triple pogo to the moon');
+
+    expect(getInstagramPostAccessibleLabel('#bouldering #climbing', 'Instagram post 2')).toBe(
+      'Instagram post 2',
+    );
+  });
+
+  it('ships twelve real manual posts for the homepage gallery', () => {
+    const originalManualJsonPath = env.instagram.manualJsonPath;
+    env.instagram.manualJsonPath = 'src/content/instagram.json';
+
+    try {
+      const manualPath = path.resolve(process.cwd(), env.instagram.manualJsonPath);
+      const raw = JSON.parse(readFileSync(manualPath, 'utf8')) as InstagramPost[];
+      const homepagePosts = raw.slice(0, HOMEPAGE_INSTAGRAM_POST_LIMIT);
+
+      expect(raw.length).toBeGreaterThanOrEqual(HOMEPAGE_INSTAGRAM_POST_LIMIT);
+      expect(homepagePosts).toHaveLength(HOMEPAGE_INSTAGRAM_POST_LIMIT);
+      expect(homepagePosts.some((post) => post.caption.trim().length > 0)).toBe(true);
+
+      homepagePosts.forEach((post) => {
+        expect(typeof post.caption).toBe('string');
+        expect(post.image).toMatch(/^(\/|https?:\/\/)/);
+        expect(post.image).not.toContain('placehold.co');
+        expect(post.url).toMatch(
+          /^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/?$/,
+        );
+        expect(post.url).not.toContain('example');
+        expect(Number.isNaN(Date.parse(post.timestamp))).toBe(false);
+      });
+    } finally {
+      env.instagram.manualJsonPath = originalManualJsonPath;
+    }
   });
 });

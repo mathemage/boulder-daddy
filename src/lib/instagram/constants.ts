@@ -1,0 +1,1 @@
+export const HOMEPAGE_INSTAGRAM_POST_LIMIT = 12;
