@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, it, expect } from 'vitest';
-import { env } from '@/env';
 import { HOMEPAGE_INSTAGRAM_POST_LIMIT } from '@/lib/instagram';
 import { getInstagramPostAccessibleLabel } from '@/lib/instagram/accessibility';
 import { normalizeGraphPosts } from '@/lib/instagram/getInstagramPosts';
@@ -126,7 +125,7 @@ describe('Instagram mapping', () => {
   });
 
   it('ships twelve real manual posts for the homepage gallery', () => {
-    const manualPath = path.resolve(process.cwd(), env.instagram.manualJsonPath);
+    const manualPath = path.resolve(process.cwd(), 'src/content/instagram.json');
     const raw = JSON.parse(readFileSync(manualPath, 'utf8')) as InstagramPost[];
     const homepagePosts = raw.slice(0, HOMEPAGE_INSTAGRAM_POST_LIMIT);
 
